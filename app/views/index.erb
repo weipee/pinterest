@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Welcome to Hacker News Clone!</h1>
+  <% @posts.each do |post| %>
+    <a href="/post/<%= post.id %>"><%= post.title %></a>
+    <p>Post by <%= post.user.username %></p>
+  <br>
+
+  <% end %>
+</div>

@@ -1,0 +1,6 @@
+<div class="container">
+  <h2><%= @post.title %></h2>
+    <%= @post.body %>
+    <br><br>
+    by <a href="/user/<%= @user.id %>"><%= @user.username %></a>
+</div>
