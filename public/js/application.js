@@ -1,7 +1,13 @@
-$(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+// $(document).ready(function() {
+//   $( ".vote" ).click(function() {
+//     event.preventDefault();
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-});
+//     $.ajax({
+//       type: 'get',
+//       url: $(this).attr("href")
+//       // success: function(msg){
+//       //   $( "body" ).append( msg );
+//       // }
+//     });
+//   });
+// });

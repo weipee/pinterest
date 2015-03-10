@@ -2,9 +2,13 @@ enable :sessions
 
 helpers do
   def current_user
-    if session[:user_id]
-      User.find session[:user_id]
-    else
+    begin
+      if session[:user_id]
+        User.find session[:user_id]
+      else
+        nil
+      end
+    rescue
       nil
     end
   end
@@ -39,13 +43,14 @@ get '/error' do
 end
 
 post '/register' do
-  User.create(params[:user])
+  @user = User.create(params[:user])
+  session[:user_id] = @user.id
 
   redirect '/home'
 end
 
 get '/home' do
-  if session[:user]
+  if session[:user_id]
     @user = User.find session[:user_id]
     @posts = Post.all
     erb :home
@@ -55,10 +60,10 @@ get '/home' do
 end
 
 get '/logout' do
-  session[:user] = nil
+  session[:user_id] = nil
   redirect '/'
 end
 
 get '/access_denied' do
-  erb :access_denied
+  erb :"user/access_denied"
 end

@@ -1,5 +1,6 @@
 get '/' do
-  @posts = Post.all
+  @posts = Post.order(id: :asc)
+  @user = current_user if logged_in?
 
   erb :index
 end
@@ -10,6 +11,21 @@ get '/post/:id' do
 
   erb :"post/show"
 end
+
+post '/post/:id/vote' do
+  if logged_in?
+    @post = Post.find params[:id]
+    @user = @post.user
+    @user_voting = current_user
+    PostVote.create(post: @post, user: @user_voting)
+  erb :"post/show"
+
+  else
+    redirect '/access_denied'
+
+  end
+end
+
 
 get '/user/:id' do
   @user = User.find params[:id]

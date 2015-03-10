@@ -1,9 +1,20 @@
 <div class="container">
   <h1>Welcome to Hacker News Clone!</h1>
-  <% @posts.each do |post| %>
-    <a href="/post/<%= post.id %>"><%= post.title %></a>
-    <p>Post by <%= post.user.username %></p>
-  <br>
+  <% if session[:user_id] %>
+  <p>Welcome back, <%= @user.username %>!</p>
+  <form action="/logout" method="get">
+    <input type="submit" value="Log out">
+  </form>
+  <% else %>
+    <a href="/login">Login or register here</a>
+  <% end %>
 
+
+  <br><br>
+  <% @posts.each do |post| %>
+    <form class="vote" action="/post/<%= post.id %>/vote" method="post"><input type="submit" value="✔"></form>
+    <a href="/post/<%= post.id %>"><%= post.title %></a>
+    <p>by <a href="/user/ <%= post.user.id %>"><%= post.user.username %></a></p>
+  <br>
   <% end %>
 </div>

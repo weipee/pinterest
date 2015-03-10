@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :body
       t.belongs_to :user
+      t.integer :post_votes_count, default: 0
 
       t.timestamps
     end
