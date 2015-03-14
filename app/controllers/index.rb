@@ -19,13 +19,10 @@ post '/post/:id/vote' do
     @user_voting = current_user
     PostVote.create(post: @post, user: @user_voting)
   erb :"post/show"
-
   else
     redirect '/access_denied'
-
   end
 end
-
 
 get '/user/:id' do
   @user = User.find params[:id]
@@ -39,16 +36,21 @@ get '/user/:id/submissions' do
   erb :"user/submissions"
 end
 
-get '/user/:id/comments' do
+get '/comment/:id' do
+  @comment = Comment.find params[:id]
+  @comuser = @comment.user
+
+  erb :"post/show"
+end
+
+get '/usr/:id/comments' do
   @user = User.find params[:id]
   @comment = @user.comments
-
   erb :"user/comments"
 end
 
 get '/submit' do
-  if current_user
-
+  if current_users
     erb :"post/submit"
 
   else

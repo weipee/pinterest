@@ -10,7 +10,7 @@ class Seed
 
   def self.seed_posts
     10.times do |x|
-      Post.create(title: Faker::Lorem.sentence, body:Faker::Lorem.paragraph, user_id: rand(1..10))
+      Post.create(title: Faker::Lorem.sentence, image: Faker::Avatar.image, body: Faker::Lorem.paragraph, user_id: rand(1..10))
     end
   end
 

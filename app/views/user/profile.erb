@@ -1,6 +1,12 @@
 <div class="container">
   <br>
-  User: <%= @user.username %><br><br>
-  <a href="/user/<%= @user.id %>/submissions">Submissions by this user</a><br>
-  <a href="/user/<%= @user.id %>/comments">Comments by this user</a>
+  <h2> <center><%= @user.username %> </center></h2>
+  <p> <center>Boards   Pins   Likes   Followers   Following</center></p><br>
+
+  <% @user.posts.each do |post| %>
+    <p> Picture: <%= post.image %><br> </p>
+    <p> Title: <a href="/post/<%= post.id %>"><%= post.title %></a> </p>
+    <br>
+  <% end %>
+
 </div>

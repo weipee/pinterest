@@ -1,20 +1,24 @@
+
 <div class="container">
-  <h1>Welcome to Hacker News Clone!</h1>
+  <h1>Welcome to Pinterest!</h1>
   <% if session[:user_id] %>
   <p>Welcome back, <%= @user.username %>!</p>
   <form action="/logout" method="get">
     <input type="submit" value="Log out">
   </form>
   <% else %>
-    <a href="/login">Login or register here</a>
+    <a href="/login">Login</a>
   <% end %>
 
 
   <br><br>
   <% @posts.each do |post| %>
     <form class="vote" action="/post/<%= post.id %>/vote" method="post"><input type="submit" value="✔"></form>
-    <a href="/post/<%= post.id %>"><%= post.title %></a>
-    <p>by <a href="/user/ <%= post.user.id %>"><%= post.user.username %></a></p>
+    <br>
+    <%= post.image %>
+    <br>
+    <p>Title: <a href="/post/<%= post.id %>"><%= post.title %></a> <p>
+    <p>User: <a href="/user/ <%= post.user.id %>"><%= post.user.username %></a></p>
   <br>
   <% end %>
 </div>
